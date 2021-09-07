@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>菜鸟教程(runoob.com)</title>
+</head>
+<body>
+<div id="app">
+    <span v-bind:title ="message">
+        sdasdas
+    </span>
+
+</div>
+<div id = "app-2" v-on:click = "a2t">
+    {{message}}
+</div>
+
+<div id="app-3">
+    <p v-if="seen">现在你看到我了</p>
+  </div>
+
+  <div id = "app-4">
+    <ol>
+        <li v-for = "(item,index) in todos" v-on:click = "ddd(item,index)">
+            {{item.text}} {{item.vb}}
+        </li>
+    </ol>
+
+
+  </div>
+  <div id = "app-5">
+    <ol>
+        <li v-for = "li in list" v-on:click = "add()">
+           {{li.index}} {{li.text}}
+        </li>
+        </ol>
+  </div>
+
+</body>
+</html>
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+<script>
+var app = new Vue({
+    el: '#app',
+    data: {
+      message: '页面加载与' +  new Date().toLocaleString()
+    }
+  })
+
+  var app2 = new Vue({
+    el: '#app-2',
+    data: {
+      message: '页面加载与' +  new Date().toLocaleString()
+    },
+    methods:{
+        a2t(){
+            console.log(this.message);
+            console.log(this);
+         //   this.message = "测试测试";
+            console.log(this.message.split(''));
+            var ss = this.message.split('');
+            console.log(ss.reverse().join(''));
+
+        }
+    }
+  })
+
+  var app3 = new Vue({
+  el: '#app-3',
+  data: {
+    seen: true
+  }
+})
+var app4 = new Vue({
+  el: '#app-4',
+  data: {
+    todos:[
+      {text:"111",vb:"dsadasdasdas111"},
+      {text:"222",vb:"dsadasdasdas222"},
+      {text:"333",vb:"dsadasdasdas333"},
+  ]
+  },
+  methods:{
+    ddd(item,index){
+
+        console.log(index);
+        console.log(item.text);
+       // this.message = this.message.split('').reverse().join('')
+    }
+  }
+})
+
+var app5 = new Vue({
+    el:"#app-5",
+    data:{
+        list:[
+            {text:"第一条信息"},
+            {text:"第er条信息"}
+        ]
+    },
+    methods:{
+        add(){
+            console.log(this.list.length);
+            this.list.push({
+                text:"第" + (this.list.length+1) + "条信息"
+            });
+        }
+    }
+})
+
+</script>
+
+
